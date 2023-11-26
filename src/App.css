@@ -1,0 +1,10 @@
+/* css variable  */
+
+:root {
+    --yellow: #ffc107;
+    --resetGreen: #045904;
+}
+
+body {
+    background-color: black;
+}

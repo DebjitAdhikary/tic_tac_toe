@@ -1,0 +1,60 @@
+set up vite+react project
+
+inside src make component folder, helper folder
+
+react-icons used     npm install react-icons --save
+
+react-toastify   used     npm install react-toastify --save
+
+
+// if parent re-renders then child components will also re-render 
+
+
+
+// state variables 
+
+setter of state variable re-renders the component, not just updates it ,
+    this state variables are immutable . setter of state variable is async function
+    so it will wait till next re-render.
+
+
+ function App(){
+	    const [count,setCount]=useState(0)
+	    return (
+	        <>
+                <button onclick={()=>{
+                    setCount(count+1) // count=0
+                    alert(count) //popup count value as 0
+                    setCount(count+1)  //count=0
+                    alert(count)  //popup count value as 0
+                    setCount(count+1)  //count = 0 ,count will be zero on every line for this render
+                                            because it will get updated on next re-render, 
+                                            so here count will not get updated by 3 , it get 1 increament only, intention failed 
+
+                                            react will execute all the event handler then it will re-render
+                }}>click</button>
+	        </>
+	    )
+   }
+
+
+
+    function App(){
+	    const [count,setCount]=useState(0)
+	    return (
+	        <>
+	            <button onclick={()=>{
+	            setCount((x)=>x+1) //call back fuction taking x vale as initial state of setCount i.e, 0 and updating to x
+	            setCount((x)=>x+1) // here x=1+1 as x will take value from previous callback
+                setCount((x)=>x+1) // here x =2+1, on next rerender count value will get increamented by 3 
+
+                //updater function used as callback, react will queue all this updates 
+                
+
+	            }}>click</button>
+	        </>
+	    )
+   }
+
+
+
